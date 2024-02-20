@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Download de vídeos do youtube</h1>
+    <h2><b>Atenção!</b> O vídeo será baixado em alta resolução!</h2>
+    <form method="POST" action="{% url 'download_video' %}">
+        {% csrf_token %}
+        <label for="vide_url">URL do video que deseja baixar</label>
+        <input type="url" id="video_url" name="video_url">
+    <button type="submit">Baixar vídeo</button>
+    </form>
+    {% if video_url %}
+        <p>Para baixar o vídeo, clique <a href="{{ video_url }}" download>aqui</a>.</p>
+        {% endif %}
+    {% if video_download_completo %}
+    <p>Download concluído!</p>
+    {% endif %}
+</body>
+</html>
